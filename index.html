@@ -26,11 +26,58 @@
     <section>
         <h2>FNs bærekraftmål</h2>
         <p>Halden kjernekraft argumenterer i rapporten for at kjernekraftverket støtter FNs bærekraftmål, noe som er ekstremt viktig for å sikre økonomi, arbeidsplasser og klima i framtiden. Ifølge rapporten vil dette kjernekraftverket være med på å støtte FNs bærekraftmål. Kjernekraft gjør Norges infrastruktur mer robust da den er mindre avhengig av klima og må derfor ikke justere seg etter klimaendringene vi allerede har skapt. Det minsker katastrofale konsekvenser. Energien produseres til enhver tid i døgnet, og vil justere etter behovet for å utnytte ressursene. Kjernekraft gir lavere utslipp på livsløpet enn alle andre energikilder og er pålitelig. EUs vitenskapspanel og FN har påvist at kjernekraft er like bærekraftig som sol og vindkraft. Kjernekraftverket vil gi 400 arbeidsplasser i ulike stillinger, som vil være godt betalt og med fokus på sikkerhet. Kjernekraft tar lite plass og gjør ikke inngrep i naturen, da den ikke er avhengig av stort areal.</p>
-        <img src="resources/mål-7.png" alt="FNs bærekraftmål 7">
-        <img src="resources/mål-8.png" alt="FNs bærekraftmål 8">
-        <img src="resources/mål-9.png" alt="FNs bærekraftmål 9">
-        <img src="resources/mål-13.png" alt="FNs bærekraftmål 13">
-        <img src="resources/mål-15.png" alt="FNs bærekraftmål 15">
+        <div class="icon-grid">
+            <img src="resources/mål-7.png" alt="FNs bærekraftmål 7" tabindex="0">
+            <p class="caption">Sikre tilgang til pålitelig, bærekraftig og moderne energi til en overkommelig pris for alle.</p>
+
+            <img src="resources/mål-8.png" alt="FNs bærekraftmål 8" tabindex="0">
+            <p class="caption">Fremme varig, inkluderende og bærekraftig økonomisk vekst, full sysselsetting og anstendig arbeid for alle.</p>
+
+            <img src="resources/mål-9.png" alt="FNs bærekraftmål 9" tabindex="0">
+            <p class="caption">Bygge solid infrastruktur og fremme inkluderende og bærekraftig industrialisering og innovasjon.</p>
+
+            <img src="resources/mål-13.png" alt="FNs bærekraftmål 13" tabindex="0">
+            <p class="caption">Handle umiddelbart for å bekjempe klimaendringene og konsekvensene av dem. Målet er å begrense den globale temperaturstigningen til godt under 2 grader celsius.</p>
+
+            <img src="resources/mål-15.png" alt="FNs bærekraftmål 15" tabindex="0">
+            <p class="caption">Beskytte, gjenopprette og fremme bærekraftig bruk av økosystemer, sikre bærekraftig skogforvaltning, bekjempe ørkenspredning, stanse og reversere landforringelse samt stanse tap av artsmangfold.</p>
+        </div>
+
+        <div class="caption-box" id="caption-box" aria-live="polite" hidden></div>
     </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const imgs = document.querySelectorAll('.icon-grid img');
+                const captionBox = document.getElementById('caption-box');
+
+                function showCaption(text) {
+                    captionBox.innerHTML = text;
+                    captionBox.hidden = false;
+                    captionBox.classList.add('visible');
+                    captionBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                function hideCaption() {
+                    captionBox.hidden = true;
+                    captionBox.classList.remove('visible');
+                    captionBox.innerHTML = '';
+                }
+
+                imgs.forEach(img => {
+                    function activate() {
+                        const next = img.nextElementSibling;
+                        if (!next || !next.classList.contains('caption')) return;
+                        const alreadyVisible = !captionBox.hidden && captionBox.innerHTML === next.innerHTML;
+                        if (alreadyVisible) {
+                            hideCaption();
+                        } else {
+                            showCaption(next.innerHTML);
+                        }
+                    }
+                    img.addEventListener('click', activate);
+                    img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+                });
+            });
+        </script>
 </body>
 </html>
