@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halden kjernekraft – fremtidens energi</title>
+  <link rel="stylesheet" href="styles2.css">
   <style>
     /* ====== Base Styles ====== */
     /* ===== Fancy Scroll Animations ===== */
@@ -282,6 +283,49 @@ h2:hover {
 .fancy-title h1 {
   background-size: 1000px 100%;
 }
+/* ===== Interactive Q&A Cards ===== */
+.interactive-section {
+  padding: 2rem 10%;
+  background: rgba(30,41,59,0.7);
+  border-radius: 1rem;
+  margin: 3rem auto;
+}
+
+.interactive-section h2 {
+  color: #8fc0f7;
+  margin-bottom: 1.5rem;
+}
+
+.interactive-card {
+  background: rgba(59,130,246,0.1);
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 4px solid #3b82f6;
+}
+
+.interactive-card:hover {
+  transform: scale(1.02);
+  background: rgba(59,130,246,0.2);
+}
+
+.interactive-card .answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  margin-top: 0;
+  padding-left: 0;
+  color: #e2e8f0;
+}
+
+.interactive-card.active .answer {
+  max-height: 200px;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
 
 
   </style>
@@ -312,8 +356,30 @@ h2:hover {
   <p>“Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området” sier selv politiker Ådne Naper (SV)</p>
 </section>
 
-  <!-- GIF between sections -->
-  <img src="resources/plant.gif" alt="Animasjon av reaktor" class="media">
+
+<!-- MÅ SKRIVES OM---------------------------------------------NB!---------------------------- -->
+<section class="interactive-section">
+  <h2>Hva synes du?</h2>
+  <p>SMR-teknologi kan være fremtidens løsning for ren energi. Hva tror du er den største fordelen?</p>
+  
+  <div class="interactive-card" tabindex="0">
+    <div class="question">Lavere utslipp</div>
+    <div class="answer">SMR produserer betydelig mindre CO₂ enn fossile alternativer.</div>
+  </div>
+
+  <div class="interactive-card" tabindex="0">
+    <div class="question">Høyere sikkerhet</div>
+    <div class="answer">Modulære reaktorer har passive sikkerhetssystemer som automatisk stopper reaktoren.</div>
+  </div>
+
+  <div class="interactive-card" tabindex="0">
+    <div class="question">Raskere installasjon</div>
+    <div class="answer">SMR produseres i fabrikker og kan installeres raskt på stedet.</div>
+  </div>
+</section>
+<!-- MÅ SKRIVES OM---------------------------------------------NB!---------------------------- -->
+
+  
 
 <section>
   <h2>SMR og sikkerhet</h2>
@@ -324,11 +390,45 @@ h2:hover {
   <p>Oppbevaring av avfallet skjer trygt over godkjente lagringsanlegg på land, før de blir transportert til et sluttlager. Et sluttlager kan være mange hundre meter under bakken i sikre beholdere som tåler fysisk nedslitning og korrusjon oppigjennom årene. Systemene rundt sikkerheten om disse beholderne er også passiv sikkerhet, noe som ikke trengs menneskelige oppfølging.</p>
   <!-- Bilde som ikke er copyrighted -->
   <img src="resources/smr.webp" alt="Teknisk diagram SMR" class="media">
-  <p>(Bilde: A. Vargas/IAEA, https://www.iaea.org/newscenter/news/what-are-small-modular-reactors-smrs)</p>
-
+  
 
 </section>
+<!-- MÅ SKRIVES OM---------------------------------------------NB!---------------------------- -->
 
+<section class="slideshow-section">
+  <h2>Utforsk SMR</h2>
+  <div class="slideshow-container">
+    <div class="slide active">
+      <img src="resources/ai-generated.png" alt="SMR oversikt">
+      <p class="slide-caption">Oversikt over SMR-reaktor</p>
+    </div>
+    <div class="slide">
+      <img src="resources/energy.jpg" alt="Diagram SMR">
+      <p class="slide-caption">Teknisk diagram av SMR-anlegg</p>
+    </div>
+    <div class="slide">
+      <img src="resources/smr.webp" alt="SMR vs NPP">
+      <p class="slide-caption">SMR vs tradisjonell atomkraft</p>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <span class="prev">&#10094;</span>
+    <span class="next">&#10095;</span>
+  </div>
+
+  <!-- Dots -->
+  <div class="dots-container">
+    <span class="dot active" data-slide="0"></span>
+    <span class="dot" data-slide="1"></span>
+    <span class="dot" data-slide="2"></span>
+  </div>
+</section>
+
+
+
+
+
+<!-- MÅ SKRIVES OM---------------------------------------------NB!---------------------------- -->
 <section>
     <h2>FNs bærekraftmål</h2>
     <p>Halden kjernekraft argumenterer i rapporten for at kjernekraftverket støtter FNs bærekraftmål, noe som er ekstremt viktig for å sikre økonomi, arbeidsplasser og klima i framtiden. </p>
@@ -427,6 +527,52 @@ h2:hover {
       item.style.transform = 'translateY(0)';
     });
   });
+
+  // ===== Interactive Q&A toggle =====
+const cards = document.querySelectorAll('.interactive-card');
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('active');
+  });
+  card.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      card.classList.toggle('active');
+    }
+  });
+});
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slideshow-section .slide');
+const dots = document.querySelectorAll('.slideshow-section .dot');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+    dots[i].classList.toggle('active', i === index);
+  });
+}
+
+document.querySelector('.slideshow-section .prev').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+});
+
+document.querySelector('.slideshow-section .next').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+});
+
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    currentSlide = parseInt(dot.dataset.slide);
+    showSlide(currentSlide);
+  });
+});
+
+
+
+
+
 </script>
 </body>
 </html>
