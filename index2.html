@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halden kjernekraft – fremtidens energi</title>
+  <style>
+    /* ====== Base Styles ====== */
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e2e8f0;
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 10%;
+      position: relative;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 1s ease, transform 1s ease;
+      margin-bottom: 3rem;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section.fade-out {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #93c5fd;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #3b82f6;
+      border-radius: 2px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.1rem;
+      max-width: 900px;
+    }
+
+    /* ====== Floating background ====== */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.12), transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(16,185,129,0.15), transparent 50%);
+      animation: floatBg 30s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes floatBg {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-5%, -5%) scale(1.1); }
+    }
+
+    /* ====== Icon Grid ====== */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      justify-items: center;
+    }
+
+    .icon-grid img {
+      width: 100px;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 1rem;
+    }
+
+    .icon-grid img:hover {
+      transform: scale(1.15) rotate(2deg);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    .caption-box {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background: rgba(30,41,59,0.8);
+      border-radius: 1rem;
+      border: 1px solid rgba(148,163,184,0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .caption-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ====== Media items ====== */
+    .media {
+      width: 100%;
+      max-width: 500px;
+      margin: 2rem auto 0 auto;
+      border-radius: 1rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+      display: block;
+    }
+
+    .media.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ====== Scrollbar & Selection ====== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 5px;
+    }
+
+    ::selection {
+      background: #3b82f6;
+      color: white;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #3b82f6; }
+      to { text-shadow: 0 0 15px #60a5fa; }
+    }
+
+    h2:hover {
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+  </style>
+</head>
+<body>
+
+        <!-- Picture in fourth section -->
+    <img src="resources/energy.jpg" alt="SMR modul" class="media">
+
+  <section>
+    <p>Halden, den lille grensebyen var en av få byer med atomreaktor til den ble stengt i 2018. Reaktoren genererte ikke strøm, men ga verdifulle data gjennom forskning på kjernekraftteknologi og materialer.</p>
+    <p>Halden kjernekraft har nå kjøpt tomt ved Femsjøen med planer om å bygge et moderne kjernekraftverk basert på SMR-teknologi – små modulære reaktorer som kan gi stabil, utslippsfri energi i mange tiår.</p>
+
+    <!-- Picture in first section -->
+    <img src="resources/ai-generated.png" alt="Oversikt over reaktor" class="media">
+  </section>
+
+  <section>
+    <h2>Vi trenger mer strøm</h2>
+    <p>I 2021 brukte Oslo, Akershus og Østfold til sammen 24 TWh med strøm. Etterspørselen vil øke dramatisk med elektrifisering av transport og industri.</p>
+    <p>Google skal etablere datasenter i Skien, som krever enorme mengder energi for å lagre og behandle data.</p>
+    <p>“Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området,” sier politiker Ådne Naper (SV).</p>
+  </section>
+
+    <!-- Picture in third section -->
+    <img src="resources/nuclear-power-plant-4529392_1280.jpg" alt="Teknisk diagram SMR" class="media">
+
+  <section>
+    <h2>SMR og sikkerhet</h2>
+    <p>Kan man egentlig stole på en reaktor med tanke på Tsjernobyl, Three Mile Island og Fukushima? Dagens SMR-reaktorer er konstruert med helt andre sikkerhetsstandarder.</p>
+    <p>SMR-anlegg produseres i fabrikk, fraktes som moduler og installeres raskt. De har passive sikkerhetssystemer som automatisk stanser reaktoren uten behov for strøm eller menneskelig inngripen.</p>
+    <p>Miljømessig gir SMR mindre avfall, høyere effektivitet og langt lavere utslipp enn fossile alternativer.</p>
+      <!-- GIF between sections -->
+  <img src="resources/radioactive-942_256.gif" alt="Animasjon av reaktor" class="media">
+  </section>
+
+
+  <section>
+    <h2>FNs bærekraftmål</h2>
+    <p>Kjernekraft støtter flere av FNs bærekraftmål ved å levere stabil, ren energi og bidra til økonomisk vekst og teknologisk utvikling.</p>
+
+    
+    <div class="icon-grid">
+      <img src="resources/mål-7.png" alt="Mål 7" tabindex="0">
+      <p class="caption">Tilgang til bærekraftig energi for alle.</p>
+
+      <img src="resources/mål-8.png" alt="Mål 8" tabindex="0">
+      <p class="caption">Fremme økonomisk vekst og anstendig arbeid.</p>
+
+      <img src="resources/mål-9.png" alt="Mål 9" tabindex="0">
+      <p class="caption">Bygge robust infrastruktur og innovasjon.</p>
+
+      <img src="resources/mål-13.png" alt="Mål 13" tabindex="0">
+      <p class="caption">Bekjempe klimaendringer og konsekvenser.</p>
+
+      <img src="resources/mål-15.png" alt="Mål 15" tabindex="0">
+      <p class="caption">Bevare økosystemer og biologisk mangfold.</p>
+    </div>
+
+
+    <div class="caption-box" id="caption-box" aria-live="polite" hidden></div>
+  </section>
+
+  <script>
+    // ===== Scroll reveal with fade-out effect =====
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          entry.target.classList.remove("fade-out");
+        } else {
+          entry.target.classList.add("fade-out");
+          entry.target.classList.remove("visible");
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // ===== Image captions =====
+    document.addEventListener('DOMContentLoaded', function () {
+      const imgs = document.querySelectorAll('.icon-grid img');
+      const captionBox = document.getElementById('caption-box');
+
+      function showCaption(text) {
+        captionBox.innerHTML = text;
+        captionBox.hidden = false;
+        captionBox.classList.add('visible');
+      }
+
+      function hideCaption() {
+        captionBox.hidden = true;
+        captionBox.classList.remove('visible');
+        captionBox.innerHTML = '';
+      }
+
+      imgs.forEach(img => {
+        function activate() {
+          const next = img.nextElementSibling;
+          if (!next || !next.classList.contains('caption')) return;
+          const alreadyVisible = !captionBox.hidden && captionBox.innerHTML === next.innerHTML;
+          if (alreadyVisible) hideCaption();
+          else showCaption(next.innerHTML);
+        }
+        img.addEventListener('click', activate);
+        img.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+        });
+      });
+    });
+
+    // ===== Media scroll animation =====
+    const mediaItems = document.querySelectorAll('.media');
+
+    const mediaObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    mediaItems.forEach(item => mediaObserver.observe(item));
+  </script>
+</body>
+</html>
