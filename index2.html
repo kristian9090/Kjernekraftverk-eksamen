@@ -6,283 +6,426 @@
   <title>Halden kjernekraft – fremtidens energi</title>
   <style>
     /* ====== Base Styles ====== */
-    body {
-      margin: 0;
-      font-family: 'Poppins', system-ui, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #e2e8f0;
-      line-height: 1.7;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
+    /* ===== Fancy Scroll Animations ===== */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px) rotate(-5deg); }
+  to { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
 
-    section {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 3rem 10%;
-      position: relative;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: opacity 1s ease, transform 1s ease;
-      margin-bottom: 3rem;
-    }
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px) rotate(5deg); }
+  to { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+section.visible:nth-child(odd) {
+  animation: slideInLeft 1s ease forwards;
+}
 
-    section.fade-out {
-      opacity: 0;
-      transform: translateY(-40px);
-    }
+section.visible:nth-child(even) {
+  animation: slideInRight 1s ease forwards;
+}
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #93c5fd;
-      position: relative;
-    }
+/* Paragraph staggered fade-in */
+section p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
 
-    h2::after {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: #3b82f6;
-      border-radius: 2px;
-    }
+section.visible p {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 1.1rem;
-      max-width: 900px;
-    }
+/* Interactive expandable content */
+.expandable {
+  background: rgba(30,41,59,0.85);
+  padding: 1rem;
+  border-radius: 0.8rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  border: 1px solid rgba(148,163,184,0.2);
+  transition: all 0.4s ease;
+}
 
-    /* ====== Floating background ====== */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 120%;
-      height: 120%;
-      background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.12), transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(16,185,129,0.15), transparent 50%);
-      animation: floatBg 30s infinite alternate ease-in-out;
-      z-index: -1;
-    }
+.expandable:hover {
+  background: rgba(59,130,246,0.2);
+  transform: scale(1.02);
+}
 
-    @keyframes floatBg {
-      from { transform: translate(0, 0) scale(1); }
-      to { transform: translate(-5%, -5%) scale(1.1); }
-    }
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid #3b82f6;
+}
 
-    /* ====== Icon Grid ====== */
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-      justify-items: center;
-    }
+/* ====== Body & Sections ===== */
+body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+  line-height: 1.7;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
-    .icon-grid img {
-      width: 100px;
-      cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      border-radius: 1rem;
-    }
+section {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 10%;
+  position: relative;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1s ease, transform 1s ease;
+  margin-bottom: 3rem;
+}
 
-    .icon-grid img:hover {
-      transform: scale(1.15) rotate(2deg);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    }
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .caption-box {
-      margin-top: 1.5rem;
-      padding: 1.2rem;
-      background: rgba(30,41,59,0.8);
-      border-radius: 1rem;
-      border: 1px solid rgba(148,163,184,0.2);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-    }
+section.fade-out {
+  opacity: 0;
+  transform: translateY(-40px);
+}
 
-    .caption-box.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #93c5fd;
+  position: relative;
+}
 
-    /* ====== Media items ====== */
-    .media {
-      width: 100%;
-      max-width: 500px;
-      margin: 2rem auto 0 auto;
-      border-radius: 1rem;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-      display: block;
-    }
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #3b82f6;
+  border-radius: 2px;
+}
 
-    .media.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+p {
+  font-size: 1.1rem;
+  margin-bottom: 1.1rem;
+  max-width: 900px;
+}
 
-    /* ====== Scrollbar & Selection ====== */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
+/* ====== Floating background ====== */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.12), transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(16,185,129,0.15), transparent 50%);
+  animation: floatBg 30s infinite alternate ease-in-out;
+  z-index: -1;
+}
 
-    ::-webkit-scrollbar-thumb {
-      background: #3b82f6;
-      border-radius: 5px;
-    }
+@keyframes floatBg {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-5%, -5%) scale(1.1); }
+}
 
-    ::selection {
-      background: #3b82f6;
-      color: white;
-    }
+/* ====== Icon Grid ====== */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-items: center;
+}
 
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #3b82f6; }
-      to { text-shadow: 0 0 15px #60a5fa; }
-    }
+.icon-grid img {
+  width: 100px;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 1rem;
+}
 
-    h2:hover {
-      animation: glow 1s ease-in-out infinite alternate;
-    }
+.icon-grid img:hover {
+  transform: scale(1.15) rotate(2deg);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.caption-box {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: rgba(30,41,59,0.8);
+  border-radius: 1rem;
+  border: 1px solid rgba(148,163,184,0.2);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.caption-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== Media items ====== */
+.media {
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto 0 auto;
+  border-radius: 1rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+  display: block;
+}
+
+.media.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== Media Alignment & Styling ====== */
+section img.media {
+  display: block;
+  margin: 2rem auto;
+  max-width: 90%;
+  height: auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border-radius: 1rem;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+section p + img.media {
+  margin-top: 1.5rem;
+}
+
+section img[src$=".gif"] {
+  max-width: 80%;
+  margin: 3rem auto;
+  display: block;
+  border: 2px solid #3b82f6;
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+@media(min-width: 900px) {
+  section img.media {
+    max-width: 60%;
+  }
+}
+
+/* ====== Scrollbar & Selection ====== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 5px;
+}
+
+::selection {
+  background: #3b82f6;
+  color: white;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #3b82f6; }
+  to { text-shadow: 0 0 15px #60a5fa; }
+}
+
+h2:hover {
+  animation: glow 1s ease-in-out infinite alternate;
+}
+/* ===== Fancy Animated Title ===== */
+.fancy-title {
+  text-align: center;
+  padding: 4rem 2rem 2rem 2rem;
+  border-radius: 1rem;
+  margin: 2rem auto;
+  max-width: 90%;
+  animation: floatTitle 4s ease-in-out infinite alternate;
+}
+
+.fancy-title h1 {
+  font-size: 3rem;
+  color: #8fc0f7;
+  background: linear-gradient(45deg, #fff10e, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+/* Floating effect for the header */
+@keyframes floatTitle {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Shimmer gradient effect */
+@keyframes shimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
+.fancy-title h1 {
+  background-size: 1000px 100%;
+}
+
+
   </style>
 </head>
 <body>
 
-        <!-- Picture in fourth section -->
-    <img src="resources/energy.jpg" alt="SMR modul" class="media">
+    <!-- Picture in fourth section -->
 
-  <section>
-    <p>Halden, den lille grensebyen var en av få byer med atomreaktor til den ble stengt i 2018. Reaktoren genererte ikke strøm, men ga verdifulle data gjennom forskning på kjernekraftteknologi og materialer.</p>
-    <p>Halden kjernekraft har nå kjøpt tomt ved Femsjøen med planer om å bygge et moderne kjernekraftverk basert på SMR-teknologi – små modulære reaktorer som kan gi stabil, utslippsfri energi i mange tiår.</p>
+    <header class="fancy-title">
+        <h1>Halden Kjernekraft – Fremtidens Energi</h1>
+    </header>
 
-    <!-- Picture in first section -->
-    <img src="resources/ai-generated.png" alt="Oversikt over reaktor" class="media">
-  </section>
-
-  <section>
-    <h2>Vi trenger mer strøm</h2>
-    <p>I 2021 brukte Oslo, Akershus og Østfold til sammen 24 TWh med strøm. Etterspørselen vil øke dramatisk med elektrifisering av transport og industri.</p>
-    <p>Google skal etablere datasenter i Skien, som krever enorme mengder energi for å lagre og behandle data.</p>
-    <p>“Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området,” sier politiker Ådne Naper (SV).</p>
-  </section>
-
-    <!-- Picture in third section -->
-    <img src="resources/nuclear-power-plant-4529392_1280.jpg" alt="Teknisk diagram SMR" class="media">
-
-  <section>
-    <h2>SMR og sikkerhet</h2>
-    <p>Kan man egentlig stole på en reaktor med tanke på Tsjernobyl, Three Mile Island og Fukushima? Dagens SMR-reaktorer er konstruert med helt andre sikkerhetsstandarder.</p>
-    <p>SMR-anlegg produseres i fabrikk, fraktes som moduler og installeres raskt. De har passive sikkerhetssystemer som automatisk stanser reaktoren uten behov for strøm eller menneskelig inngripen.</p>
-    <p>Miljømessig gir SMR mindre avfall, høyere effektivitet og langt lavere utslipp enn fossile alternativer.</p>
-      <!-- GIF between sections -->
-  <img src="resources/radioactive-942_256.gif" alt="Animasjon av reaktor" class="media">
-  </section>
+<img src="resources/energy.jpg" alt="SMR modul" class="media">
 
 
-  <section>
-    <h2>FNs bærekraftmål</h2>
-    <p>Kjernekraft støtter flere av FNs bærekraftmål ved å levere stabil, ren energi og bidra til økonomisk vekst og teknologisk utvikling.</p>
+<section>
+  <p>Halden, den lille grensebyen var en av få byer med atomreaktor til den ble stengt i 2018, reaktoren genererte ikke strøm men ga verdifulle data i bruk av forskning. Nå skal TikTok og Google og kanskje OpenAI ha datasentre i Norge, og da stilles spørsmålet hvordan blir energibehovet for Norge i framtiden? Hvordan vil dette påvirke strømpriser og vanlige forbrukere. </p>
+  <p>Halden kjernekraft har nå kjøpt tomt ved Femsjøen med planer om å bygge et kjernekraftverk for å produsere energi. Dette er i tråd med Haldens historie da det er en av få byer i Norge som har hatt atomreaktor, sammen med dataen de har fått fra IFE og den gamle reaktoren er det logisk.</p>
 
-    
-    <div class="icon-grid">
-      <img src="resources/mål-7.png" alt="Mål 7" tabindex="0">
-      <p class="caption">Tilgang til bærekraftig energi for alle.</p>
+  <!-- Picture in first section -->
+  <img src="resources/ai-generated.png" alt="Oversikt over reaktor" class="media">
+</section>
 
-      <img src="resources/mål-8.png" alt="Mål 8" tabindex="0">
-      <p class="caption">Fremme økonomisk vekst og anstendig arbeid.</p>
+<section>
+  <h2>Vi trenger mer strøm</h2>
+  <p>I 2021 brukte Oslo, Akershus og Østfold til sammen 24 TWh med strøm, men produserte kun 6TWh. Altså området produserte fire ganger mindre strøm enn det som ble konsumert, og på de kaldeste vinterdagene er forbruket to ganger høyere enn produksjonen. Statnett forventer at innen 2028 vil hele Sør-Norge gå med et kraftunderskudd, det vil få følgende konsekvenser: begrenset muligheter for etablering av ny industri, redusert strømforsyningssikkerhet, og høyere strømpriser.</p>
+  <p>Google skal etablere datasenter lokalisert i Skien som lagrer og behandler data, dette er svært attraktivt for kommunen på grunn av investeringene og arbeidsplassene det skaper. Datasenteret anslår å bruke 5% av hele Norges totale strømforbruk, noe som langt overstiger det Skien kommune selv produserer. Norge som lokasjon er strategisk for Google da de ønsker å bli 100% karbonfrie innen 2030, og Norge kan tilby ren vannkraft. Etableringen støtter regjeringens datasenterstrategi, da regjeringen har som mål å bli verdens mest digitaliserte land innen 2030. Under byggingen vil datasenteret skape 2000 arbeidsplasser mens rundt 100 under drift..</p>
+  <p>“Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området” sier selv politiker Ådne Naper (SV)</p>
+</section>
 
-      <img src="resources/mål-9.png" alt="Mål 9" tabindex="0">
-      <p class="caption">Bygge robust infrastruktur og innovasjon.</p>
+  <!-- GIF between sections -->
+  <img src="resources/plant-20761_256.gif" alt="Animasjon av reaktor" class="media">
 
-      <img src="resources/mål-13.png" alt="Mål 13" tabindex="0">
-      <p class="caption">Bekjempe klimaendringer og konsekvenser.</p>
+<section>
+  <h2>SMR og sikkerhet</h2>
+  <p>Kan man egentlig stole på en reaktor med tanke på Tsjernobyl, Three Man Island, Fukushima og andre katastrofer. Løsningen Halden kommune har kommet frem til, er å satse på et SMR-anlegg. SMR eller Small Modul Reactors, er avanserte atomkraftverk-anlegg som er betydelig mindre i størrelse og hver reaktor produserer opp i mot 300MW, noe som er rundt en tredjedel av vanlige tradisjonelle atomkraftverk. Dette gjør dem perfekt egnet til ikke bare Halden, men også hele Østlandets behov.  </p>
+  <p>En av de største fordelene innen SMR-teknologien, er at reaktorene kan bli produsert i fabrikk, deretter fraktes ferdigbygd til stedet der de skal bli installert. Det gjør både byggetiden kostnadseffektiv, i tillegg til redusering av risiko sammenlignet med tradisjonelle kjernekraftverk.</p>
+  <p>Sikkerheten rundt SMR-anlegg er strengt regulert og vil derfor bli benyttet av passive sikkerhetssystemer. Det vil si automatisk nedstengning av reaktoren, i tillegg til effektiv nedkjøling uten menneskelige handlinger. </p>
+  <p>Når det gjelder miljø, har SMR-anlegget noen fordeler. Siden anlegget er mindre enn et tradisjonelt kraftverk er også reaktorene mindre, det vil si for oss da at avfallet er mindre. Mindre avfall er lettere å håndtere og transportere både i reaktoren og til der avfallet skal oppbevares.</p>
+  <p>Oppbevaring av avfallet skjer trygt over godkjente lagringsanlegg på land, før de blir transportert til et sluttlager. Et sluttlager kan være mange hundre meter under bakken i sikre beholdere som tåler fysisk nedslitning og korrusjon oppigjennom årene. Systemene rundt sikkerheten om disse beholderne er også passiv sikkerhet, noe som ikke trengs menneskelige oppfølging.</p>
+  <!-- Bilde som ikke er copyrighted -->
+  <img src="resources/smr-vs-npp-v5_0.png.webp" alt="Teknisk diagram SMR" class="media">
 
-      <img src="resources/mål-15.png" alt="Mål 15" tabindex="0">
-      <p class="caption">Bevare økosystemer og biologisk mangfold.</p>
-    </div>
 
+</section>
 
-    <div class="caption-box" id="caption-box" aria-live="polite" hidden></div>
-  </section>
+<section>
+  <h2>FNs bærekraftmål</h2>
+  <p>Halden kjernekraft argumenterer i rapporten for at kjernekraftverket støtter FNs bærekraftmål, noe som er ekstremt viktig for å sikre økonomi, arbeidsplasser og klima i framtiden. </p>
+  <p>Ifølge rapporten vil dette kjernekraftverket være med på å støtte FNs bærekraftmål. Kjernekraft gjør Norges infrastruktur mer robust da den er mindre avhengig av klima og må derfor ikke justere seg etter klimaendringene vi allerede har skapt. Det minsker katastrofale konsekvenser. Energien produseres til enhver tid i døgnet, og vil justere etter behovet for å utnytte ressursene. Kjernekraft gir lavere utslipp på livsløpet enn alle andre energikilder og er pålitelig. EUs vitenskapspanel og FN har påvist at kjernekraft er like bærekraftig som sol og vindkraft. Kjernekraftverket vil gi 400 arbeidsplasser i ulike stillinger, som vil være godt betalt og med fokus på sikkerhet. Kjernekraft tar lite plass og gjør ikke inngrep i naturen, da den ikke er avhengig av stort areal. </p>
 
-  <script>
-    // ===== Scroll reveal with fade-out effect =====
-    const sections = document.querySelectorAll("section");
+  <div class="icon-grid">
+    <img src="resources/mål-7.png" alt="Mål 7" tabindex="0">
+    <p class="caption">Tilgang til bærekraftig energi for alle.</p>
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          entry.target.classList.remove("fade-out");
-        } else {
-          entry.target.classList.add("fade-out");
-          entry.target.classList.remove("visible");
-        }
-      });
-    }, { threshold: 0.3 });
+    <img src="resources/mål-8.png" alt="Mål 8" tabindex="0">
+    <p class="caption">Fremme økonomisk vekst og anstendig arbeid.</p>
 
-    sections.forEach(sec => observer.observe(sec));
+    <img src="resources/mål-9.png" alt="Mål 9" tabindex="0">
+    <p class="caption">Bygge robust infrastruktur og innovasjon.</p>
 
-    // ===== Image captions =====
-    document.addEventListener('DOMContentLoaded', function () {
-      const imgs = document.querySelectorAll('.icon-grid img');
-      const captionBox = document.getElementById('caption-box');
+    <img src="resources/mål-13.png" alt="Mål 13" tabindex="0">
+    <p class="caption">Bekjempe klimaendringer og konsekvenser.</p>
 
-      function showCaption(text) {
-        captionBox.innerHTML = text;
-        captionBox.hidden = false;
-        captionBox.classList.add('visible');
+    <img src="resources/mål-15.png" alt="Mål 15" tabindex="0">
+    <p class="caption">Bevare økosystemer og biologisk mangfold.</p>
+  </div>
+
+  <div class="caption-box" id="caption-box" aria-live="polite" hidden></div>
+</section>
+
+<script>
+  // ===== Scroll reveal with fade-out effect =====
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        entry.target.classList.remove("fade-out");
+      } else {
+        entry.target.classList.add("fade-out");
+        entry.target.classList.remove("visible");
       }
+    });
+  }, { threshold: 0.3 });
 
-      function hideCaption() {
-        captionBox.hidden = true;
-        captionBox.classList.remove('visible');
-        captionBox.innerHTML = '';
+  sections.forEach(sec => observer.observe(sec));
+
+  // ===== Image captions =====
+  document.addEventListener('DOMContentLoaded', function () {
+    const imgs = document.querySelectorAll('.icon-grid img');
+    const captionBox = document.getElementById('caption-box');
+
+    function showCaption(text) {
+      captionBox.innerHTML = text;
+      captionBox.hidden = false;
+      captionBox.classList.add('visible');
+    }
+
+    function hideCaption() {
+      captionBox.hidden = true;
+      captionBox.classList.remove('visible');
+      captionBox.innerHTML = '';
+    }
+
+    imgs.forEach(img => {
+      function activate() {
+        const next = img.nextElementSibling;
+        if (!next || !next.classList.contains('caption')) return;
+        const alreadyVisible = !captionBox.hidden && captionBox.innerHTML === next.innerHTML;
+        if (alreadyVisible) hideCaption();
+        else showCaption(next.innerHTML);
       }
-
-      imgs.forEach(img => {
-        function activate() {
-          const next = img.nextElementSibling;
-          if (!next || !next.classList.contains('caption')) return;
-          const alreadyVisible = !captionBox.hidden && captionBox.innerHTML === next.innerHTML;
-          if (alreadyVisible) hideCaption();
-          else showCaption(next.innerHTML);
-        }
-        img.addEventListener('click', activate);
-        img.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
-        });
+      img.addEventListener('click', activate);
+      img.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
       });
     });
+  });
 
-    // ===== Media scroll animation =====
-    const mediaItems = document.querySelectorAll('.media');
+  // ===== Media scroll animation =====
+  const mediaItems = document.querySelectorAll('.media');
 
-    const mediaObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.3 });
+  const mediaObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.3 });
 
-    mediaItems.forEach(item => mediaObserver.observe(item));
-  </script>
+  mediaItems.forEach(item => mediaObserver.observe(item));
+
+  // ===== Media hover effect =====
+  mediaItems.forEach(item => {
+    item.addEventListener('mouseover', () => {
+      item.style.transform += ' rotate(3deg) scale(1.05)';
+      item.style.transition = 'transform 0.5s ease';
+    });
+    item.addEventListener('mouseout', () => {
+      item.style.transform = 'translateY(0)';
+    });
+  });
+</script>
 </body>
 </html>
