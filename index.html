@@ -128,7 +128,7 @@
         <p class="caption" style="display:none">Beskytte, gjenopprette og fremme bærekraftig bruk av økosystemer, sikre bærekraftig skogforvaltning, bekjempe ørkenspredning, stanse og reversere landforringelse samt stanse tap av artsmangfold.</p>
     </div>
 
-    <div class="caption-box" id="caption-box" aria-live="polite" hidden></div>
+  <div class="caption-box" id="caption-box" aria-live="polite"></div>
 </section>
 
 <script>
@@ -155,22 +155,24 @@
     const captionBox = document.getElementById('caption-box');
 
     function showCaption(text) {
-      captionBox.innerHTML = text;
-      captionBox.hidden = false;
+      captionBox.innerHTML = '<p>' + text + '</p>'; // wrapped so caption-box p can fade in
       captionBox.classList.add('visible');
+      captionBox.dataset.current = text;
+      captionBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function hideCaption() {
-      captionBox.hidden = true;
       captionBox.classList.remove('visible');
-      captionBox.innerHTML = '';
+      delete captionBox.dataset.current;
+      // clear innerHTML after transition completes to avoid abrupt changes
+      setTimeout(() => { if (!captionBox.classList.contains('visible')) captionBox.innerHTML = ''; }, 520);
     }
 
     imgs.forEach(img => {
       function activate() {
         const next = img.nextElementSibling;
         if (!next || !next.classList.contains('caption')) return;
-        const alreadyVisible = !captionBox.hidden && captionBox.innerHTML === next.innerHTML;
+        const alreadyVisible = captionBox.classList.contains('visible') && captionBox.dataset.current === next.innerHTML;
         if (alreadyVisible) hideCaption();
         else showCaption(next.innerHTML);
       }

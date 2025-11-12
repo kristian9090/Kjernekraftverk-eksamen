@@ -211,22 +211,25 @@ body::before {
 /* ====== Icon Grid ====== */
 .icon-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  /* øk minimumsstørrelse slik at bildene blir større på alle skjermer */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
   justify-items: center;
 }
 
 .icon-grid img {
-  width: 100px;
+  width: 160px; /* større bilder */
+  height: auto;
   cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
   border-radius: 1rem;
+  will-change: transform, opacity;
 }
 
 .icon-grid img:hover {
-  transform: scale(1.15) rotate(2deg);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  transform: scale(1.08) rotate(1.5deg);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.45);
 }
 
 .caption-box {
@@ -239,11 +242,35 @@ body::before {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s ease;
+  /* Sikre samme høyde for alle caption-bokser */
+  min-height: 80px;
+  max-height: 220px;
+  overflow: auto;
+  display: block;
 }
 
 .caption-box.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Fade-in for caption content inside the shared caption box */
+.caption-box p {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  margin: 0;
+}
+.caption-box.visible p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Match height for hidden caption paragraphs so layout doesn't jump */
+.icon-grid .caption {
+  min-height: 120px;
+  max-height: 220px;
+  overflow: hidden;
 }
 
 /* ====== Media items ====== */
