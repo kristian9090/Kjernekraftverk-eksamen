@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halden kjernekraft – fremtidens energi</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 </head>
 <body>
@@ -29,7 +30,15 @@
   <h2>Vi trenger mer strøm</h2>
   <p>I 2021 brukte Oslo, Akershus og Østfold til sammen 24 TWh med strøm, men produserte kun 6TWh. Altså området produserte fire ganger mindre strøm enn det som ble konsumert, og på de kaldeste vinterdagene er forbruket to ganger høyere enn produksjonen. Statnett forventer at innen 2028 vil hele Sør-Norge gå med et kraftunderskudd, det vil få følgende konsekvenser: begrenset muligheter for etablering av ny industri, redusert strømforsyningssikkerhet, og høyere strømpriser.</p>
   <p>Google skal etablere datasenter lokalisert i Skien som lagrer og behandler data, dette er svært attraktivt for kommunen på grunn av investeringene og arbeidsplassene det skaper. Datasenteret anslår å bruke 5% av hele Norges totale strømforbruk, noe som langt overstiger det Skien kommune selv produserer. Norge som lokasjon er strategisk for Google da de ønsker å bli 100% karbonfrie innen 2030, og Norge kan tilby ren vannkraft. Etableringen støtter regjeringens datasenterstrategi, da regjeringen har som mål å bli verdens mest digitaliserte land innen 2030. Under byggingen vil datasenteret skape 2000 arbeidsplasser mens rundt 100 under drift..</p>
-  <p>“Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området” sier selv politiker Ådne Naper (SV)</p>
+  <p>"Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området" sier selv politiker Ådne Naper (SV)</p>
+
+  <!-- Kraft og arbeidsplasser visualisering -->
+  <div class="charts-container">
+    <div class="chart-wrapper">
+      <h3>Kraftbalanse Oslo, Akershus og Østfold (2021)</h3>
+      <canvas id="kraftChart"></canvas>
+    </div>
+  </div>
 </section>
 
 
@@ -200,7 +209,7 @@
   // ===== Media hover effect =====
   mediaItems.forEach(item => {
     item.addEventListener('mouseover', () => {
-      item.style.transform += ' rotate(3deg) scale(1.05)';
+      item.style.transform += ' scale(1.05)';
       item.style.transition = 'transform 0.5s ease';
     });
     item.addEventListener('mouseout', () => {
@@ -252,6 +261,62 @@ dots.forEach(dot => {
 
 
 
+
+// ===== Charts for kraft og prosjekt data =====
+document.addEventListener('DOMContentLoaded', function() {
+  // Chart 1: Kraftbalanse
+  const kraftCtx = document.getElementById('kraftChart');
+  if (kraftCtx) {
+    new Chart(kraftCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Forbruk 2021', 'Produksjon 2021', 'Kraftunderskudd', 'Nytt kjernekraftverk (planlagt)'],
+        datasets: [{
+          label: 'TWh (terawattimer)',
+          data: [24, 6, 18, 10],
+          backgroundColor: [
+            'rgba(239, 68, 68, 0.7)',
+            'rgba(34, 197, 94, 0.7)',
+            'rgba(251, 146, 60, 0.7)',
+            'rgba(59, 130, 246, 0.7)'
+          ],
+          borderColor: [
+            'rgba(239, 68, 68, 1)',
+            'rgba(34, 197, 94, 1)',
+            'rgba(251, 146, 60, 1)',
+            'rgba(59, 130, 246, 1)'
+          ],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.parsed.y + ' TWh';
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#e2e8f0' },
+            grid: { color: 'rgba(148,163,184,0.2)' }
+          },
+          x: {
+            ticks: { color: '#e2e8f0' },
+            grid: { color: 'rgba(148,163,184,0.2)' }
+          }
+        }
+      }
+    });
+  }
+});
 
 </script>
 </body>

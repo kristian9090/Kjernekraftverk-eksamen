@@ -228,7 +228,7 @@ body::before {
 }
 
 .icon-grid img:hover {
-  transform: scale(1.08) rotate(1.5deg);
+  transform: scale(1.08);
   box-shadow: 0 12px 26px rgba(0,0,0,0.45);
 }
 
@@ -414,6 +414,39 @@ h2:hover {
   max-height: 200px;
   padding-left: 1rem;
   margin-top: 0.5rem;
+}
+
+/* ===== Charts styling ===== */
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.chart-wrapper {
+  background: rgba(30,41,59,0.6);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148,163,184,0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.chart-wrapper h3 {
+  color: #8fc0f7;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.chart-wrapper canvas {
+  max-height: 350px;
+}
+
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
 }
 /* ===== Hero Header with Background Image ===== */
 .fancy-title {
