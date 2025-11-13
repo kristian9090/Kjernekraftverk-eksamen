@@ -168,7 +168,7 @@ section.fade-out {
 h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #93c5fd;
+  color: #ffcb00;
   position: relative;
 }
 
@@ -186,7 +186,7 @@ h2::after {
 p {
   font-size: 1.1rem;
   margin-bottom: 1.1rem;
-  max-width: 900px;
+  max-width: 999px;
 }
 
 /* ====== Floating background ====== */
@@ -296,7 +296,6 @@ section img.media {
   margin: 2rem auto;
   max-width: 90%;
   height: auto;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   border-radius: 1rem;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
@@ -363,11 +362,7 @@ h2:hover {
 }
 
 /* Floating effect for the header */
-@keyframes floatTitle {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
+
 
 /* Shimmer gradient effect */
 @keyframes shimmer {
@@ -387,7 +382,7 @@ h2:hover {
 }
 
 .interactive-section h2 {
-  color: #8fc0f7;
+  color: #ffcb00;
   margin-bottom: 1.5rem;
 }
 
@@ -419,6 +414,71 @@ h2:hover {
   max-height: 200px;
   padding-left: 1rem;
   margin-top: 0.5rem;
+}
+/* ===== Hero Header with Background Image ===== */
+.fancy-title {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('resources/energy.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  border-radius: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Dark overlay for better text readability */
+.fancy-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.fancy-title h1 {
+  position: relative;
+  z-index: 2;
+  font-size: 3.5rem;
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.8);
+  margin: 0;
+  padding: 0 20px;
+  background: linear-gradient(45deg, #fff10e, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+/* Fade out header on scroll */
+.fancy-title.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Shimmer gradient effect */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .fancy-title h1 {
+    font-size: 2rem;
+  }
 }
 
 
