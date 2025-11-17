@@ -106,6 +106,15 @@ section.visible p {
   transform: translateY(0);
 }
 
+/* Disable paragraph animation for comparison cards */
+.comparison-section p,
+.comparison-section .card-hint,
+.comparison-section .card-note {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: none !important;
+}
+
 /* Interactive expandable content */
 .expandable {
   background: rgba(30,41,59,0.85);
@@ -339,9 +348,7 @@ section img[src$=".gif"] {
   to { text-shadow: 0 0 15px #60a5fa; }
 }
 
-h2:hover {
-  animation: glow 1s ease-in-out infinite alternate;
-}
+
 /* ===== Fancy Animated Title ===== */
 .fancy-title {
   text-align: center;
@@ -552,7 +559,187 @@ h2:hover {
     font-size: 2rem;
   }
 }
+/* ===== Comparison Section ===== */
+.comparison-section {
+  padding: 3rem 10%;
+  background: rgba(30,41,59,0.5);
+  border-radius: 1rem;
+  margin: 3rem auto;
+}
 
+/* Disable all section animations for comparison section */
+.comparison-section.visible {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
 
+.comparison-section h2 {
+  text-align: center;
+  color: #ffcb00;
+  margin-bottom: 1rem;
+}
+
+.comparison-section h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.comparison-section > p {
+  text-align: center;
+  color: #8fc0f7;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-top: 2rem;
+  perspective: 1000px;
+}
+
+.comparison-card {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.comparison-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.comparison-card.flipped:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.comparison-card:focus {
+  outline: none;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 77%;
+  height: 77%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  will-change: transform;
+}
+
+.card-front {
+  background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(16,185,129,0.2));
+  border: 1px solid rgba(148,163,184,0.3);
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  background: linear-gradient(135deg, rgba(59,130,246,0.4), rgba(16,185,129,0.4));
+  border: 1px solid rgba(148,163,184,0.4);
+  transform: rotateY(180deg);
+}
+
+.comparison-card.flipped .card-front {
+  transform: rotateY(-180deg);
+}
+
+.comparison-card.flipped .card-back {
+  transform: rotateY(0deg);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: cardFloat 3s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.card-front h3 {
+  color: #ffcb00;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.card-front h3::after {
+  display: none;
+}
+
+.card-hint {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1rem;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.card-back h3 {
+  color: #ffcb00;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 0.5rem;
+}
+
+.card-back h3::after {
+  display: none;
+}
+
+.card-back p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.card-back p strong {
+  color: #ffcb00;
+}
+
+.card-note {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148,163,184,0.3);
+  color: #8fc0f7;
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .comparison-card {
+    height: 320px;
+  }
+}
 
 
