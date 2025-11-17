@@ -255,22 +255,28 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
 </section>
 
 <script>
-  // ===== Scroll reveal with fade-out effect =====
-  const sections = document.querySelectorAll("section");
+  // ===== Scroll reveal with fade-out effect (FIX) =====
+const sections = document.querySelectorAll("section");
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Kjør animasjon bare én gang
+      if (!entry.target.classList.contains('animated')) {
         entry.target.classList.add("visible");
-        entry.target.classList.remove("fade-out");
-      } else {
-        entry.target.classList.add("fade-out");
-        entry.target.classList.remove("visible");
+        entry.target.classList.add("animated");
       }
-    });
-  }, { threshold: 0.3 });
+      entry.target.classList.remove("fade-out");
+    } else {
+      // Kun fade ut hvis IKKE allerede animert
+      if (!entry.target.classList.contains('animated')) {
+        entry.target.classList.add("fade-out");
+      }
+    }
+  });
+}, { threshold: 0.3 });
 
-  sections.forEach(sec => observer.observe(sec));
+sections.forEach(sec => observer.observe(sec));
 
   // ===== Image captions =====
   document.addEventListener('DOMContentLoaded', function () {

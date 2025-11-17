@@ -87,12 +87,25 @@
   to { opacity: 1; transform: translateX(0) rotate(0deg); }
 }
 
-section.visible:nth-child(odd) {
+/* Kjør animasjon bare på ikke-animerte seksjoner */
+section.visible:nth-child(odd):not(.animated) {
   animation: slideInLeft 1s ease forwards;
 }
 
-section.visible:nth-child(even) {
+section.visible:nth-child(even):not(.animated) {
   animation: slideInRight 1s ease forwards;
+}
+
+/* Behold posisjonen etter animasjon er ferdig */
+section.animated {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* Ikke fade ut seksjoner som allerede er animert */
+section.animated.fade-out {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 /* Paragraph staggered fade-in */
