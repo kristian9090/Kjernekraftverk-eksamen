@@ -6,24 +6,32 @@
   <title>Halden kjernekraft – fremtidens energi</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
 </head>
 <body>
 
-
-    <header class="fancy-title">
+<header class="fancy-title">
+    <div class="header-overlay"></div>
+    <div class="header-content">
         <h1>Halden Kjernekraft – Fremtidens Energi</h1>
-        <p id="header-KildeP">Bilde: Energy, Nuclear power plant, Grohnde image. Free for use. URL:https://pixabay.com/photos/energy-nuclear-power-plant-grohnde-4030427/</p>
-    </header>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll ned</span>
+        <div class="scroll-arrow">↓</div>
+    </div>
+</header>
 
-
-
+<div class="header-citation">
+    <p class="citation-title">Bilde: Energy, Nuclear power plant, Grohnde image</p>
+    <p class="citation-source">Kilde: Pixabay (Free for use)</p>
+    <p class="citation-url">URL: <a href="https://pixabay.com/photos/energy-nuclear-power-plant-grohnde-4030427/" target="_blank" rel="noopener">pixabay.com/photos/energy-nuclear-power-plant-grohnde-4030427/</a></p>
+</div>
 
 <section>
   <h2>Halden – En by med kjernekraft historie</h2>
   <p>Halden, den lille grensebyen var en av få byer med atomreaktor til den ble stengt i 2018, reaktoren genererte ikke strøm men ga verdifulle data i bruk av forskning. Nå skal TikTok og Google og kanskje OpenAI ha datasentre i Norge, og da stilles spørsmålet hvordan blir energibehovet for Norge i framtiden? Hvordan vil dette påvirke strømpriser og vanlige forbrukere.</p>
   <p>Halden kjernekraft har nå kjøpt tomt ved Femsjøen med planer om å bygge et kjernekraftverk for å produsere energi. Dette er i tråd med Haldens historie da det er en av få byer i Norge som har hatt atomreaktor, sammen med dataen de har fått fra IFE og den gamle reaktoren er det logisk.</p>
 </section>
+
 <!-----------------------------------Bilde-slides ------------>
 <section class="slideshow-section">
   <h2>Bilder</h2>
@@ -75,17 +83,15 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
     <button class="slide-dot active" data-slide="0" aria-label="Gå til slide 1"></button>
     <button class="slide-dot" data-slide="1" aria-label="Gå til slide 2"></button>
     <button class="slide-dot" data-slide="2" aria-label="Gå til slide 3"></button>
-
   </div>
 </section>
- <!------------------------------------------>
-
+<!------------------------------------------>
 
 <section>
   <h2>Vi trenger mer strøm</h2>
   <p>I 2021 brukte Oslo, Akershus og Østfold til sammen 24 TWh med strøm, men produserte kun 6TWh. Altså området produserte fire ganger mindre strøm enn det som ble konsumert, og på de kaldeste vinterdagene er forbruket to ganger høyere enn produksjonen. Statnett forventer at innen 2028 vil hele Sør-Norge gå med et kraftunderskudd, det vil få følgende konsekvenser: begrenset muligheter for etablering av ny industri, redusert strømforsyningssikkerhet, og høyere strømpriser.</p>
   <p>Google skal etablere datasenter lokalisert i Skien som lagrer og behandler data, dette er svært attraktivt for kommunen på grunn av investeringene og arbeidsplassene det skaper. Datasenteret anslår å bruke 5% av hele Norges totale strømforbruk, noe som langt overstiger det Skien kommune selv produserer. Norge som lokasjon er strategisk for Google da de ønsker å bli 100% karbonfrie innen 2030, og Norge kan tilby ren vannkraft. Etableringen støtter regjeringens datasenterstrategi, da regjeringen har som mål å bli verdens mest digitaliserte land innen 2030. Under byggingen vil datasenteret skape 2000 arbeidsplasser mens rundt 100 under drift.</p>
-  <p>“Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området” sier selv politiker Ådne Naper (SV)</p>
+  <p>"Hvis det ikke bygges mer kraft vil datasentre sluke all tilgjengelig kraft i området" sier selv politiker Ådne Naper (SV)</p>
 
   <!-- Kraft og arbeidsplasser visualisering -->
   <div class="charts-container">
@@ -95,8 +101,6 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
     </div>
   </div>
 </section>
-
-
 
 <section class="interactive-section">
   <h2>Klarer du dette?</h2>
@@ -118,8 +122,6 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
   </div>
 </section>
 
-
-
 <section>
   <h2>SMR og sikkerhet</h2>
   <p>Kan man egentlig stole på en reaktor med tanke på Tsjernobyl, Three Man Island, Fukushima og andre katastrofer. Løsningen Halden kommune har kommet frem til, er å satse på et SMR-anlegg. SMR eller Small Modul Reactors, er avanserte atomkraftverk-anlegg som er betydelig mindre i størrelse og hver reaktor produserer opp i mot 300MW, noe som er rundt en tredjedel av vanlige tradisjonelle atomkraftverk. Dette gjør dem perfekt egnet til ikke bare Halden, men også hele Østlandets behov.</p>
@@ -127,16 +129,12 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
   <p>Sikkerheten rundt SMR-anlegg er strengt regulert og vil derfor bli benyttet av passive sikkerhetssystemer. Det vil si automatisk nedstengning av reaktoren, i tillegg til effektiv nedkjøling uten menneskelige handlinger.</p>
   <p>Når det gjelder miljø, har SMR-anlegget noen fordeler. Siden anlegget er mindre enn et tradisjonelt kraftverk er også reaktorene mindre, det vil si for oss da at avfallet er mindre. Mindre avfall er lettere å håndtere og transportere både i reaktoren og til der avfallet skal oppbevares.</p>
   <p>Oppbevaring av avfallet skjer trygt over godkjente lagringsanlegg på land, før de blir transportert til et sluttlager. Et sluttlager kan være mange hundre meter under bakken i sikre beholdere som tåler fysisk nedslitning og korrusjon oppigjennom årene. Systemene rundt sikkerheten om disse beholderne er også passiv sikkerhet, noe som ikke trengs menneskelige oppfølging.</p>
-  <!-- Bilde som ikke er copyrighted -->
+  
   <img src="resources/smr.webp" alt="Teknisk diagram SMR" class="media">
   <p id="kilderSMR">Figur over: Small Modular Reactors (SMRs)
 Kilde: International Atomic Energy Agency (IAEA), 2024
 URL: https://www.iaea.org/newscenter/news/what-are-small-modular-reactors-smrs</p>
-  
-
 </section>
-
-<!-- MÅ SKRIVES OM--------------------UNDER-------------------------NB!---------------------------- -->
 
 <section class="comparison-section">
   <h2>SMR vs Tradisjonell Kjernekraft</h2>
@@ -228,16 +226,12 @@ URL: https://www.iaea.org/newscenter/news/what-are-small-modular-reactors-smrs</
   </div>
 </section>
 
-
-
-
-<!-- MÅ SKRIVES OM---------------------OVER------------------------NB!---------------------------- -->
 <section>
     <h2>FNs bærekraftmål</h2>
     <p>Halden kjernekraft argumenterer i rapporten for at kjernekraftverket støtter FNs bærekraftmål, noe som er ekstremt viktig for å sikre økonomi, arbeidsplasser og klima i framtiden.</p>
     <p>Ifølge rapporten vil dette kjernekraftverket være med på å støtte FNs bærekraftmål. Kjernekraft gjør Norges infrastruktur mer robust da den er mindre avhengig av klima og må derfor ikke justere seg etter klimaendringene vi allerede har skapt. Det minsker katastrofale konsekvenser. Energien produseres til enhver tid i døgnet, og vil justere etter behovet for å utnytte ressursene. Kjernekraft gir lavere utslipp på livsløpet enn alle andre energikilder og er pålitelig. EUs vitenskapspanel og FN har påvist at kjernekraft er like bærekraftig som sol og vindkraft. Kjernekraftverket vil gi 400 arbeidsplasser i ulike stillinger, som vil være godt betalt og med fokus på sikkerhet. Kjernekraft tar lite plass og gjør ikke inngrep i naturen, da den ikke er avhengig av stort areal.</p>
 
-      <h2>Klikk på målene for mer</h2>
+    <h2>Klikk på målene for mer</h2>
     <div class="icon-grid">
         <img src="resources/mål-7.png" alt="Mål 7" tabindex="0">
         <p class="caption" style="display:none">Sikre tilgang til pålitelig, bærekraftig og moderne energi til en overkommelig pris for alle.</p>
@@ -265,14 +259,12 @@ const sections = document.querySelectorAll("section");
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Kjør animasjon bare én gang
       if (!entry.target.classList.contains('animated')) {
         entry.target.classList.add("visible");
         entry.target.classList.add("animated");
       }
       entry.target.classList.remove("fade-out");
     } else {
-      // Kun fade ut hvis IKKE allerede animert
       if (!entry.target.classList.contains('animated')) {
         entry.target.classList.add("fade-out");
       }
@@ -288,7 +280,7 @@ sections.forEach(sec => observer.observe(sec));
     const captionBox = document.getElementById('caption-box');
 
     function showCaption(text) {
-      captionBox.innerHTML = '<p>' + text + '</p>'; // wrapped so caption-box p can fade in
+      captionBox.innerHTML = '<p>' + text + '</p>';
       captionBox.classList.add('visible');
       captionBox.dataset.current = text;
       captionBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -297,7 +289,6 @@ sections.forEach(sec => observer.observe(sec));
     function hideCaption() {
       captionBox.classList.remove('visible');
       delete captionBox.dataset.current;
-      // clear innerHTML after transition completes to avoid abrupt changes
       setTimeout(() => { if (!captionBox.classList.contains('visible')) captionBox.innerHTML = ''; }, 520);
     }
 
@@ -329,8 +320,6 @@ sections.forEach(sec => observer.observe(sec));
 
   mediaItems.forEach(item => mediaObserver.observe(item));
 
-  
-
   // ===== Interactive Q&A toggle =====
 const cards = document.querySelectorAll('.interactive-card');
 cards.forEach(card => {
@@ -344,56 +333,9 @@ cards.forEach(card => {
     }
   });
 });
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slideshow-section .slide');
-const dots = document.querySelectorAll('.slideshow-section .dot');
-const prevBtn = document.querySelector('.slideshow-section .prev');
-const nextBtn = document.querySelector('.slideshow-section .next');
-
-function showSlide(index) {
-  if (!slides.length) return;
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-    if (dots[i]) dots[i].classList.toggle('active', i === index);
-  });
-}
-
-// Only attach handlers if the relevant elements exist to avoid runtime errors
-if (slides.length) {
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    });
-  }
-
-  if (dots.length) {
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const idx = parseInt(dot.dataset.slide);
-        if (!Number.isNaN(idx)) {
-          currentSlide = idx;
-          showSlide(currentSlide);
-        }
-      });
-    });
-  }
-}
-
-
-
-
 
 // ===== Charts for kraft og prosjekt data =====
 document.addEventListener('DOMContentLoaded', function() {
-  // Chart 1: Kraftbalanse
   const kraftCtx = document.getElementById('kraftChart');
   if (kraftCtx) {
     new Chart(kraftCtx, {
@@ -446,6 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
 // ===== Comparison Cards Flip Effect =====
 document.addEventListener('DOMContentLoaded', function() {
   const comparisonCards = document.querySelectorAll('.comparison-card');
@@ -465,104 +408,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
 // ===== Image Slideshow =====
 document.addEventListener('DOMContentLoaded', function() {
   let currentSlideIndex = 0;
-  let autoPlayInterval;
-  let isPlaying = false;
   
   const slideItems = document.querySelectorAll('.slide-item');
   const slideDots = document.querySelectorAll('.slide-dot');
   const prevBtn = document.querySelector('.slide-prev');
   const nextBtn = document.querySelector('.slide-next');
-  const playPauseBtn = document.getElementById('playPauseBtn');
   
-  if (!slideItems.length) return; // Exit if no slides
+  if (!slideItems.length) return;
   
-  // Show specific slide
   function showSlide(index) {
-    // Wrap around
     if (index >= slideItems.length) currentSlideIndex = 0;
     else if (index < 0) currentSlideIndex = slideItems.length - 1;
     else currentSlideIndex = index;
     
-    // Hide all slides
     slideItems.forEach(slide => slide.classList.remove('active'));
     slideDots.forEach(dot => dot.classList.remove('active'));
     
-    // Show current slide
     slideItems[currentSlideIndex].classList.add('active');
     if (slideDots[currentSlideIndex]) {
       slideDots[currentSlideIndex].classList.add('active');
     }
   }
   
-  // Next slide
   function nextSlide() {
     showSlide(currentSlideIndex + 1);
   }
   
-  // Previous slide
   function prevSlide() {
     showSlide(currentSlideIndex - 1);
   }
   
-  // Auto play
-  function startAutoPlay() {
-    isPlaying = true;
-    autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-    
-    if (playPauseBtn) {
-      playPauseBtn.querySelector('.play-icon').style.display = 'none';
-      playPauseBtn.querySelector('.pause-icon').style.display = 'inline';
-    }
-  }
-  
-  function stopAutoPlay() {
-    isPlaying = false;
-    clearInterval(autoPlayInterval);
-    
-    if (playPauseBtn) {
-      playPauseBtn.querySelector('.play-icon').style.display = 'inline';
-      playPauseBtn.querySelector('.pause-icon').style.display = 'none';
-    }
-  }
-  
-  // Event Listeners
-  if (prevBtn) prevBtn.addEventListener('click', () => {
-    prevSlide();
-    stopAutoPlay();
-  });
-  
-  if (nextBtn) nextBtn.addEventListener('click', () => {
-    nextSlide();
-    stopAutoPlay();
-  });
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
   
   slideDots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       showSlide(index);
-      stopAutoPlay();
     });
   });
   
-  if (playPauseBtn) {
-    playPauseBtn.addEventListener('click', () => {
-      if (isPlaying) stopAutoPlay();
-      else startAutoPlay();
-    });
-  }
-  
-  // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') prevSlide();
     if (e.key === 'ArrowRight') nextSlide();
   });
-  
-  // Optional: Start autoplay on load (remove if you don't want this)
-  // startAutoPlay();
 });
-
 </script>
 </body>
 </html>
