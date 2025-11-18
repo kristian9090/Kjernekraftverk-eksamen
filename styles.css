@@ -313,6 +313,19 @@ body::before {
   transform: translateY(0);
 }
 
+.kilderP {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+#kilderSMR{
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: -1.5rem;
+}
+
 /* ====== Media Alignment & Styling ====== */
 section img.media {
   display: block;

@@ -13,6 +13,7 @@
 
     <header class="fancy-title">
         <h1>Halden Kjernekraft – Fremtidens Energi</h1>
+        <p id="header-KildeP">Bilde: Energy, Nuclear power plant, Grohnde image. Free for use. URL:https://pixabay.com/photos/energy-nuclear-power-plant-grohnde-4030427/</p>
     </header>
 
 
@@ -34,7 +35,7 @@
       <img src="resources/map.png" alt="SMR oversikt">
       <div class="slide-caption">
         <h3>Kart over området</h3>
-        <p>Figur 41: lokasjon
+        <p class="kilderP">Figur 41: lokasjon
             Kilde: Halden Kjernekraft AS (Lokaliseringsstudie 2025, s. 42)</p>
       </div>
     </div>
@@ -44,7 +45,7 @@
       <img src="resources/HK-fra-luft.jpg" alt="Illustrasjon av anlegget">
       <div class="slide-caption">
         <h3>Illustrasjon av anlegget</h3>
-        <p>Halden Kjernekraft AS (2025). 
+        <p class="kilderP">Halden Kjernekraft AS (2025). 
 URL: https://www.haldenkjernekraft.no/lokasjoner/ 
 [Hentet: 17/11/2025]</p>
       </div>
@@ -55,7 +56,7 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
       <img src="resources/top_Illustrasjon.png" alt="en illustrasjon av anlegget i fugleperspektiv">
       <div class="slide-caption">
         <h3>Overblikk over anlegget</h3>
-        <p>Figur 2: Anlegget sett ifra fugleperspektiv
+        <p class="kilderP">Figur 2: Anlegget sett ifra fugleperspektiv
             Kilde: Halden Kjernekraft AS (Lokaliseringsstudie 2025, s. 10)</p>
       </div>
     </div>
@@ -128,6 +129,9 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
   <p>Oppbevaring av avfallet skjer trygt over godkjente lagringsanlegg på land, før de blir transportert til et sluttlager. Et sluttlager kan være mange hundre meter under bakken i sikre beholdere som tåler fysisk nedslitning og korrusjon oppigjennom årene. Systemene rundt sikkerheten om disse beholderne er også passiv sikkerhet, noe som ikke trengs menneskelige oppfølging.</p>
   <!-- Bilde som ikke er copyrighted -->
   <img src="resources/smr.webp" alt="Teknisk diagram SMR" class="media">
+  <p id="kilderSMR">Figur over: Small Modular Reactors (SMRs)
+Kilde: International Atomic Energy Agency (IAEA), 2024
+URL: https://www.iaea.org/newscenter/news/what-are-small-modular-reactors-smrs</p>
   
 
 </section>
@@ -233,7 +237,7 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
     <p>Halden kjernekraft argumenterer i rapporten for at kjernekraftverket støtter FNs bærekraftmål, noe som er ekstremt viktig for å sikre økonomi, arbeidsplasser og klima i framtiden.</p>
     <p>Ifølge rapporten vil dette kjernekraftverket være med på å støtte FNs bærekraftmål. Kjernekraft gjør Norges infrastruktur mer robust da den er mindre avhengig av klima og må derfor ikke justere seg etter klimaendringene vi allerede har skapt. Det minsker katastrofale konsekvenser. Energien produseres til enhver tid i døgnet, og vil justere etter behovet for å utnytte ressursene. Kjernekraft gir lavere utslipp på livsløpet enn alle andre energikilder og er pålitelig. EUs vitenskapspanel og FN har påvist at kjernekraft er like bærekraftig som sol og vindkraft. Kjernekraftverket vil gi 400 arbeidsplasser i ulike stillinger, som vil være godt betalt og med fokus på sikkerhet. Kjernekraft tar lite plass og gjør ikke inngrep i naturen, da den ikke er avhengig av stort areal.</p>
 
-      <h2>Klikk for mer</h2>
+      <h2>Klikk på målene for mer</h2>
     <div class="icon-grid">
         <img src="resources/mål-7.png" alt="Mål 7" tabindex="0">
         <p class="caption" style="display:none">Sikre tilgang til pålitelig, bærekraftig og moderne energi til en overkommelig pris for alle.</p>
@@ -325,16 +329,7 @@ sections.forEach(sec => observer.observe(sec));
 
   mediaItems.forEach(item => mediaObserver.observe(item));
 
-  // ===== Media hover effect =====
-  mediaItems.forEach(item => {
-    item.addEventListener('mouseover', () => {
-      item.style.transform += ' scale(1.05)';
-      item.style.transition = 'transform 0.5s ease';
-    });
-    item.addEventListener('mouseout', () => {
-      item.style.transform = 'translateY(0)';
-    });
-  });
+  
 
   // ===== Interactive Q&A toggle =====
 const cards = document.querySelectorAll('.interactive-card');
