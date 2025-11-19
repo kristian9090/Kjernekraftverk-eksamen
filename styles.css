@@ -990,7 +990,7 @@ section img[src$=".gif"] {
 
 /* FIXED IMAGE HEIGHT */
 .slide-item img {
-  width: 100%;
+  width: 899px;
   height: 500px; /* FIXED HEIGHT */
   object-fit: contain; /* Shows full image */
   object-position: center;
