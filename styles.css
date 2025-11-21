@@ -9,7 +9,7 @@
 .slideshow-container {
   position: relative;
   max-width: 900px;
-  height: 700px; /* FIXED HEIGHT - won't resize */
+  height: 700px; 
   margin: 0 auto;
   overflow: hidden;
   border-radius: 1rem;
@@ -88,7 +88,6 @@
   to { opacity: 1; transform: translateX(0) rotate(0deg); }
 }
 
-/* Kjør animasjon bare på ikke-animerte seksjoner */
 section.visible:nth-child(odd):not(.animated) {
   animation: slideInLeft 1s ease forwards;
 }
@@ -97,19 +96,16 @@ section.visible:nth-child(even):not(.animated) {
   animation: slideInRight 1s ease forwards;
 }
 
-/* Behold posisjonen etter animasjon er ferdig */
 section.animated {
   opacity: 1;
   transform: translateX(0) rotate(0deg);
 }
 
-/* Ikke fade ut seksjoner som allerede er animert */
 section.animated.fade-out {
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
 
-/* Paragraph staggered fade-in */
 section p {
   opacity: 0;
   transform: translateY(20px);
@@ -121,7 +117,6 @@ section.visible p {
   transform: translateY(0);
 }
 
-/* Disable paragraph animation for comparison cards */
 .comparison-section p,
 .comparison-section .card-hint,
 .comparison-section .card-note {
@@ -130,7 +125,6 @@ section.visible p {
   transition: none !important;
 }
 
-/* Interactive expandable content */
 .expandable {
   background: rgba(30,41,59,0.85);
   padding: 1rem;
@@ -155,7 +149,6 @@ section.visible p {
   border-left: 2px solid #3b82f6;
 }
 
-/* ====== Body & Sections ===== */
 body {
   margin: 0;
   font-family: 'Poppins', system-ui, sans-serif;
@@ -213,7 +206,6 @@ p {
   max-width: 999px;
 }
 
-/* ====== Floating background ====== */
 body::before {
   content: "";
   position: fixed;
@@ -232,7 +224,6 @@ body::before {
   to { transform: translate(-5%, -5%) scale(1.1); }
 }
 
-/* ====== Icon Grid ====== */
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -293,7 +284,6 @@ body::before {
   overflow: hidden;
 }
 
-/* ====== Media items ====== */
 .media {
   width: 100%;
   max-width: 500px;
@@ -325,7 +315,6 @@ body::before {
   margin-right: auto;
 }
 
-/* ====== Media Alignment & Styling ====== */
 section img.media {
   display: block;
   margin: 2rem auto;
@@ -354,7 +343,6 @@ section img[src$=".gif"] {
   }
 }
 
-/* ====== Scrollbar & Selection ====== */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -374,7 +362,6 @@ section img[src$=".gif"] {
   to { text-shadow: 0 0 15px #60a5fa; }
 }
 
-/* ===== Fancy Animated Title ===== */
 .fancy-title {
   text-align: center;
   padding: 4rem 2rem 2rem 2rem;
@@ -394,7 +381,6 @@ section img[src$=".gif"] {
   animation: shimmer 5s ease-in-out infinite;
 }
 
-/* Shimmer gradient effect */
 @keyframes shimmer {
   0% { background-position: -500px 0; }
   100% { background-position: 500px 0; }
@@ -404,7 +390,6 @@ section img[src$=".gif"] {
   background-size: 1000px 100%;
 }
 
-/* ===== Interactive Q&A Cards ===== */
 .interactive-section {
   padding: 2rem 10%;
   background: rgba(30,41,59,0.7);
@@ -520,7 +505,6 @@ section img[src$=".gif"] {
   }
 }
 
-/* ===== IMPROVED HEADER SECTION ===== */
 .fancy-title {
   position: relative;
   height: 100vh;
@@ -712,7 +696,6 @@ section img[src$=".gif"] {
   }
 }
 
-/* ===== Comparison Section ===== */
 .comparison-section {
   padding: 3rem 10%;
   background: rgba(30,41,59,0.5);
@@ -940,7 +923,6 @@ section img[src$=".gif"] {
   }
 }
 
-/* ===== FIXED SLIDESHOW Section ===== */
 .slideshow-section {
   padding: 3rem 10%;
   background: rgba(30,41,59,0.6);
@@ -961,11 +943,11 @@ section img[src$=".gif"] {
   transform: none !important;
 }
 
-/* FIXED CONTAINER HEIGHT */
 .slideshow-container {
   position: relative;
+  width: 100%;
   max-width: 900px;
-  height: 700px; /* FIXED - WON'T RESIZE */
+  height: 700px;
   margin: 0 auto;
   border-radius: 1rem;
   overflow: hidden;
@@ -973,7 +955,6 @@ section img[src$=".gif"] {
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* ABSOLUTE POSITIONING FOR SLIDES */
 .slide-item {
   display: none;
   position: absolute;
@@ -984,28 +965,28 @@ section img[src$=".gif"] {
 }
 
 .slide-item.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
-/* FIXED IMAGE HEIGHT */
 .slide-item img {
-  width: 899px;
-  height: 500px; /* FIXED HEIGHT */
-  object-fit: contain; /* Shows full image */
+  display: block;
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
   object-position: center;
   border-radius: 1rem 1rem 0 0;
   background-color: rgba(15,23,42,0.9);
 }
 
-/* FIXED CAPTION HEIGHT */
 .slide-caption {
   padding: 1.5rem 2rem;
   background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(16,185,129,0.2));
   border-top: 2px solid rgba(59,130,246,0.4);
-  min-height: 180px; /* FIXED MIN HEIGHT */
-  max-height: 180px; /* FIXED MAX HEIGHT */
-  overflow-y: auto; /* Scroll if text is too long */
+  min-height: 180px; 
+  max-height: 180px; 
+  overflow-y: auto; 
 }
 
 .slide-caption h3 {
@@ -1025,7 +1006,6 @@ section img[src$=".gif"] {
   transform: none !important;
 }
 
-/* Navigation Arrows */
 .slide-prev,
 .slide-next {
   position: absolute;
@@ -1062,7 +1042,6 @@ section img[src$=".gif"] {
   right: 15px;
 }
 
-/* Dots Navigation */
 .slide-dots {
   display: flex;
   justify-content: center;
@@ -1092,7 +1071,6 @@ section img[src$=".gif"] {
   box-shadow: 0 0 10px rgba(143,192,247,0.6);
 }
 
-/* Slide Animation */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -1104,13 +1082,11 @@ section img[src$=".gif"] {
   }
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .slideshow-section {
     padding: 2rem 5%;
   }
   
-  /* FIXED HEIGHT FOR TABLET */
   .slideshow-container {
     height: 580px;
   }
@@ -1160,7 +1136,6 @@ section img[src$=".gif"] {
 }
 
 @media (max-width: 480px) {
-  /* FIXED HEIGHT FOR MOBILE */
   .slideshow-container {
     height: 480px;
   }

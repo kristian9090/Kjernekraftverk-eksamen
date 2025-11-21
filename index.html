@@ -32,15 +32,13 @@
   <p>Halden kjernekraft har nå kjøpt tomt ved Femsjøen med planer om å bygge et kjernekraftverk for å produsere energi. Dette er i tråd med Haldens historie da det er en av få byer i Norge som har hatt atomreaktor, sammen med dataen de har fått fra IFE og den gamle reaktoren er det logisk.</p>
 </section>
 
-<!-----------------------------------Bilde-slides ------------>
 <section class="slideshow-section">
   <h2>Bilder</h2>
   <p>Bla gjennom bildene for å se mer om SMR-anleggets plassering og design</p>
   
   <div class="slideshow-container">
-    <!-- Slide 1 -->
     <div class="slide-item active">
-      <img src="resources/map.png" alt="SMR oversikt">
+      <img src="resources/map.png" alt="SMR oversikt" style="display:block; margin:0 auto; width:90%; height:90%; object-fit:contain;">
       <div class="slide-caption">
         <h3>Kart over området</h3>
         <p class="citation-url"></p>
@@ -49,9 +47,8 @@
       </div>
     </div>
 
-    <!-- Slide 2 -->
     <div class="slide-item">
-      <img src="resources/HK-fra-luft.jpg" alt="Illustrasjon av anlegget">
+      <img src="resources/HK-fra-luft.jpg" alt="Illustrasjon av anlegget" style="display:block; margin:0 auto; width:90%; height:90%; object-fit:contain;">
       <div class="slide-caption">
         <h3>Illustrasjon av anlegget</h3>
         <p class="citation-url"></p>
@@ -62,7 +59,7 @@ URL: https://www.haldenkjernekraft.no/lokasjoner/
     </div>
 
     <div class="slide-item">
-      <img src="resources/top_Illustrasjon.png" alt="en illustrasjon av anlegget i fugleperspektiv">
+      <img src="resources/top_Illustrasjon.png" alt="en illustrasjon av anlegget i fugleperspektiv" style="display:block; margin:0 auto; width:90%; height:90%; object-fit:contain;">
       <div class="slide-caption">
         <h3>Overblikk over anlegget</h3>
         <p class="citation-url"></p>
@@ -253,7 +250,6 @@ URL: https://www.iaea.org/newscenter/news/what-are-small-modular-reactors-smrs</
 </section>
 
 <script>
-  // ===== Scroll reveal with fade-out effect (FIX) =====
 const sections = document.querySelectorAll("section");
 
 const observer = new IntersectionObserver(entries => {
@@ -274,7 +270,6 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(sec => observer.observe(sec));
 
-  // ===== Image captions =====
   document.addEventListener('DOMContentLoaded', function () {
     const imgs = document.querySelectorAll('.icon-grid img');
     const captionBox = document.getElementById('caption-box');
@@ -307,7 +302,6 @@ sections.forEach(sec => observer.observe(sec));
     });
   });
 
-  // ===== Media scroll animation =====
   const mediaItems = document.querySelectorAll('.media');
 
   const mediaObserver = new IntersectionObserver(entries => {
@@ -320,7 +314,6 @@ sections.forEach(sec => observer.observe(sec));
 
   mediaItems.forEach(item => mediaObserver.observe(item));
 
-  // ===== Interactive Q&A toggle =====
 const cards = document.querySelectorAll('.interactive-card');
 cards.forEach(card => {
   card.addEventListener('click', () => {
@@ -334,7 +327,6 @@ cards.forEach(card => {
   });
 });
 
-// ===== Charts for kraft og prosjekt data =====
 document.addEventListener('DOMContentLoaded', function() {
   const kraftCtx = document.getElementById('kraftChart');
   if (kraftCtx) {
@@ -389,7 +381,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ===== Comparison Cards Flip Effect =====
 document.addEventListener('DOMContentLoaded', function() {
   const comparisonCards = document.querySelectorAll('.comparison-card');
   
@@ -409,7 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ===== Image Slideshow =====
 document.addEventListener('DOMContentLoaded', function() {
   let currentSlideIndex = 0;
   
