@@ -743,6 +743,11 @@ section img[src$=".gif"] {
   width: 100%;
   cursor: pointer;
   transform-style: preserve-3d;
+  img {
+    width: 5rem;
+    height: auto;
+    margin-bottom: 1rem;
+  }
 }
 
 .comparison-card:hover {
