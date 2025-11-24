@@ -391,10 +391,10 @@ section img[src$=".gif"] {
 }
 
 .interactive-section {
-  padding: 2rem 10%;
+  padding: 1rem 5%;
   background: rgba(30,41,59,0.7);
   border-radius: 1rem;
-  margin: 3rem auto;
+  /*margin: 3rem auto;*/
 }
 
 .interactive-section h2 {
